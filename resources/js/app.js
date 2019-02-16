@@ -26,6 +26,7 @@ import Dashobard from './components/Dashboard';
 import ProfileComponent from './components/ProfileComponent';
 import Users from './components/Users';
 import Developer from './components/Developer';
+import Notfound from './components/Notfound';
 
 Vue.use(VueRouter)
 import VueProgressBar from 'vue-progressbar';
@@ -58,6 +59,11 @@ let routes =[
         path:'/developer', 
         name: 'Developer',
         component: Developer
+    },
+    {
+        path:'*', 
+        name: 'Notfound',
+        component: Notfound
     }
 ]
 
@@ -114,10 +120,20 @@ Vue.component(
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
     el: '#app',
-    router
-});
+    router,
+    data:{
+        search: ''
+    },
+    methods:{
+        searchit: _.debounce(() => {
+            Fire.$emit('searching');
+        },1000),
 
+        printme() {
+            window.print();
+        }
+    }
+});
 

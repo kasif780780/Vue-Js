@@ -10,6 +10,7 @@
                    <button class="btn btn-success" @click="newModel" >Add New
                    <span><i class="fas fa-user-plus"></i></span>
                    </button>
+                    <a href="" @click.prevent="printme" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                 </div>
                
               </div>
@@ -149,6 +150,11 @@
             }
         },
         methods:{
+           printme() {
+             $('button').hide();
+             $('.card-footer').hide();
+            window.print();
+        },
           getResults(page = 1) {
 		                	axios.get('api/user?page=' + page)
 			                        	.then(response => {

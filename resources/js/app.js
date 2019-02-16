@@ -27,6 +27,8 @@ import ProfileComponent from './components/ProfileComponent';
 import Users from './components/Users';
 import Developer from './components/Developer';
 import Notfound from './components/Notfound';
+import invoice from './components/invoice';
+
 
 Vue.use(VueRouter)
 import VueProgressBar from 'vue-progressbar';
@@ -63,6 +65,11 @@ let routes =[
     {
         path:'*', 
         name: 'Notfound',
+        component: Notfound
+    },
+    {
+        path:'/invoice', 
+        name: 'invoice',
         component: Notfound
     }
 ]
@@ -114,6 +121,10 @@ Vue.component(
 Vue.component(
     'not-found',
     require('./components/Notfound.vue').default
+);
+Vue.component(
+    'invoice',
+    require('./components/invoice.vue').default
 );
 /**
  * Next, we will create a fresh Vue application instance and attach it to

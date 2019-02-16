@@ -1,7 +1,9 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-             <not-found></not-found>
+            <div class="col-md-10 mt-5">
+                <invoice></invoice>
+            </div>
         </div>
     </div>
 </template>

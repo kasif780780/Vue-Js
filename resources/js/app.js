@@ -9,7 +9,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import { Form, HasError, AlertError } from 'vform'
+import { Form, HasError, AlertError } from 'vform';
+
+import Gate from './Gate';
+Vue.prototype.$gate= new Gate(window.user);
 window.Form=Form;
 
 Vue.component(HasError.name, HasError)
@@ -22,6 +25,7 @@ import Dashobard from './components/Dashboard';
 import ProfileComponent from './components/ProfileComponent';
 import Users from './components/Users';
 import Developer from './components/Developer';
+
 Vue.use(VueRouter)
 import VueProgressBar from 'vue-progressbar';
 import swal from 'sweetalert';
@@ -99,6 +103,10 @@ Vue.component(
 Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue').default
+);
+Vue.component(
+    'not-found',
+    require('./components/Notfound.vue').default
 );
 /**
  * Next, we will create a fresh Vue application instance and attach it to

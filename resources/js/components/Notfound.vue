@@ -1,7 +1,11 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-             <not-found></not-found>
+            <div class="col-md-10">
+                <div class="card">
+                    <img src="/img/notfound.svg">
+                </div>
+            </div>
         </div>
     </div>
 </template>

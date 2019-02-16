@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-          <div class="col-12">
+          <div class="col-12" v-if="$gate.isAdmin()">
             <div class="card mt-5">
               <div class="card-header">
                 <h3 class="card-title"> All Users</h3>
@@ -53,9 +53,11 @@
           </div>
         </div>
         <!-- Button trigger modal -->
+                <div v-if="!$gate.isAdmin()">
+                        <not-found></not-found>
+                 </div>
 
-
-<!-- Modal -->
+<!-- Mo$gatedal -->
 <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -199,7 +201,10 @@
            },
 
           loadUsers(){
-                axios.get("api/user").then(({data})=>(this.users=data.data))
+            if(this.$gate.isAdmin()){
+ axios.get("api/user").then(({data})=>(this.users=data.data))
+            }
+               
           },
             createUser()
             {

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-          <div class="col-12" v-if="$gate.isAdmin()">
+          <div class="col-12" v-if="$gate.isAdminorAuthor()">
             <div class="card mt-5">
               <div class="card-header">
                 <h3 class="card-title"> All Users</h3>
@@ -53,7 +53,7 @@
           </div>
         </div>
         <!-- Button trigger modal -->
-                <div v-if="!$gate.isAdmin()">
+                <div v-if="!$gate.isAdminorAuthor()">
                         <not-found></not-found>
                  </div>
 
@@ -201,8 +201,8 @@
            },
 
           loadUsers(){
-            if(this.$gate.isAdmin()){
- axios.get("api/user").then(({data})=>(this.users=data.data))
+            if(this.$gate.isAdminorAuthor()){
+                    axios.get("api/user").then(({data})=>(this.users=data.data))
             }
                
           },

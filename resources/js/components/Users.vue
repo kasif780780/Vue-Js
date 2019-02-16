@@ -25,7 +25,7 @@
                     <th>Action</th>
                   </tr>
               
-                    <tr v-for="item in users" :key="item.id">
+                    <tr v-for="item in users.data" :key="item.id">
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.email}}</td>
@@ -48,10 +48,18 @@
                 </tbody></table>
               </div>
               <!-- /.card-body -->
+              <div class="card-footer">
+               
+                <pagination :data="users"  @pagination-change-page="getResults">
+	<span slot="prev-nav">&lt; Previous</span>
+	<span slot="next-nav">Next &gt;</span>
+</pagination>
+              </div>
             </div>
             <!-- /.card -->
           </div>
         </div>
+        
         <!-- Button trigger modal -->
                 <div v-if="!$gate.isAdminorAuthor()">
                         <not-found></not-found>
@@ -141,6 +149,12 @@
             }
         },
         methods:{
+          getResults(page = 1) {
+		                	axios.get('api/user?page=' + page)
+			                        	.then(response => {
+				                    	this.users = response.data;
+		          	     	});
+	                	},
             updateUser(){
               //  console.log('editing data');
                 this.$Progress.start();
@@ -202,7 +216,7 @@
 
           loadUsers(){
             if(this.$gate.isAdminorAuthor()){
-                    axios.get("api/user").then(({data})=>(this.users=data.data))
+                    axios.get("api/user").then(({data})=>(this.users=data))
             }
                
           },

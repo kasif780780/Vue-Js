@@ -10,6 +10,7 @@
                    <button class="btn btn-success" @click="newModel" >Add New
                    <span><i class="fas fa-product-plus"></i></span>
                    </button>
+                 
                     <a href="" @click.prevent="printme" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                 </div>
                
@@ -154,6 +155,7 @@
   </div>
 
 </div>
+
     </div>
 </template>
 

@@ -28,6 +28,8 @@ import Users from './components/Users';
 import Developer from './components/Developer';
 import Notfound from './components/Notfound';
 import invoice from './components/invoice';
+import Product from './components/Product';
+
 
 
 Vue.use(VueRouter)
@@ -71,7 +73,13 @@ let routes =[
         path:'/invoice', 
         name: 'invoice',
         component: Notfound
-    }
+    },
+    {
+        path:'/product', 
+        name: 'Product',
+        component:Product
+    },
+  
 ]
 
 const router = new VueRouter({

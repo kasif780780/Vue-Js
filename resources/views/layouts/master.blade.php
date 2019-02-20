@@ -83,6 +83,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
+            <router-link to="/product" class="nav-link">
+              
+              <i class="nav fa fa-tachometer-alt"></i>
+              <p>
+                product
+                
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
              <router-link to="/users" class="nav-link">
             <i class="nav fas fa-users"></i>
               <p>
@@ -112,6 +122,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+        
          
           <li class="nav-item">
            
@@ -188,6 +199,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
     window.user = @json(auth()->user())
 </script>
+
 @endauth
+@yield('script')
 </body>
 <html>

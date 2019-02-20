@@ -4,11 +4,11 @@
           <div class="col-12" v-if="$gate.isAdminorAuthor()">
             <div class="card mt-5">
               <div class="card-header">
-                <h3 class="card-title"> All Users</h3>
+                <h3 class="card-title"> All products</h3>
 
                 <div class="card-tools">
                    <button class="btn btn-success" @click="newModel" >Add New
-                   <span><i class="fas fa-user-plus"></i></span>
+                   <span><i class="fas fa-product-plus"></i></span>
                    </button>
                     <a href="" @click.prevent="printme" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                 </div>
@@ -19,19 +19,28 @@
                 <table class="table table-hover">
                   <tbody><tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Currency</th>
+                    <th>Amount</th>
+                    <th>Purpose</th>
+                    <th>Marchant</th>
+                    <th>Category</th>
+                    
+                    <!-- <th>Email</th>
+                    <th>Type</th> -->
                     <th>Registared At</th>
                     <th>Action</th>
                   </tr>
               
-                    <tr v-for="item in users.data" :key="item.id">
+                    <tr v-for="item in products.data" :key="item.id">
                     <td>{{item.id}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.email}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.currency}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.purpose}}</td>
+                    <td>{{item.marchant}}</td>
                     <td>{{item.type | upText}}</td>
-                    <td>{{item.created_at |dateFormat}}</td>
+                     <td>{{item.created_at |dateFormat}}</td>
 
                     <td><span class="tag tag-success">Approved</span></td>
                     <td>
@@ -51,7 +60,7 @@
               <!-- /.card-body -->
               <div class="card-footer">
                
-                <pagination :data="users"  @pagination-change-page="getResults">
+                <pagination :data="products"  @pagination-change-page="getResults">
 	<span slot="prev-nav">&lt; Previous</span>
 	<span slot="next-nav">Next &gt;</span>
 </pagination>
@@ -72,7 +81,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" v-show="!editMode" id="addNewModal">Add New</h5>
-        <h5 class="modal-title" v-show="editMode" id="addNewModal">Update User's Info</h5>
+        <h5 class="modal-title" v-show="editMode" id="addNewModal">Update product's Info</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -80,41 +89,59 @@
       <form @submit.prevent="editMode ? updateUser():createUser()">
            <div class="modal-body">
                   <div class="form-group">
-                     <label>Username</label>
-                      <input v-model="form.name" type="text" name="name"
-                       class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
-                       <has-error :form="form" field="name"></has-error>
+                     <label>Title</label>
+                      <input v-model="form.title" type="text" name="title"
+                       class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
+                       <has-error :form="form" field="title"></has-error>
                 </div>
                 <div class="form-group">
-                     <label>Email</label>
-                      <input v-model="form.email" type="text" name="email"
-                       class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
-                       <has-error :form="form" field="email"></has-error>
+                   <label for="exampleFormControlSelect1">Currency</label>
+                   <select name="currency" v-model="form.currency" id="currency" class="form-control"
+                     :class="{ 'is-invalid': form.errors.has('currency') }"> 
+                    <option value="">Select product Role</option>
+                   <option value ="INR">INR</option>
+                     <option value ="USD">USD</option>
+                       
+      
+                        </select>
+                     <has-error :form="form" field="currency"></has-error>
+                  </div>
+                <div class="form-group">
+                     <label>Amount</label>
+                      <input v-model="form.amount" type="number" name="amount"
+                       class="form-control" :class="{ 'is-invalid': form.errors.has('amount') }">
+                       <has-error :form="form" field="amount"></has-error>
                 </div>
                    <div class="form-group">
-                     <label>Bio</label>
-                      <textarea v-model="form.bio" type="bio" name="bio"
-                       class="form-control" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
-                       <has-error :form="form" field="bio"></has-error>
+                     <label>Purpose</label>
+                      <textarea v-model="form.purpose" type="purpose" name="purpose"
+                       class="form-control" :class="{ 'is-invalid': form.errors.has('purpose') }"></textarea>
+                       <has-error :form="form" field="purpose"></has-error>
                 </div>
                  <div class="form-group">
-                   <label for="exampleFormControlSelect1">Example select</label>
+                     <label>Marchant</label>
+                      <textarea v-model="form.marchant" type="purpose" name="marchant"
+                       class="form-control" :class="{ 'is-invalid': form.errors.has('marchant') }"></textarea>
+                       <has-error :form="form" field="marchant"></has-error>
+                </div>
+                 <div class="form-group">
+                   <label for="exampleFormControlSelect1">Category</label>
                    <select name="type" v-model="form.type" id="type" class="form-control"
-                     :class="{ 'is-invalid': form.errors.has('email') }"> 
-                    <option value="">Select User Role</option>
-                   <option value ="admin">Admin</option>
-                     <option value ="user">Standard User</option>
-                       <option value ="author">Author</option>
+                     :class="{ 'is-invalid': form.errors.has('type') }"> 
+                    <option value="">Select product Role</option>
+                   <option value ="transport">Transport</option>
+                     <option value ="Food">Food</option>
+                       
       
                         </select>
                      <has-error :form="form" field="type"></has-error>
                   </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                      <label>Password</label>
                       <input v-model="form.password" type="password" name="password"
                        class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
                        <has-error :form="form" field="password"></has-error>
-                </div>
+                </div> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -137,14 +164,17 @@
         {
             return{
               editMode:false,
-               users :{},
+               products :{},
                 form:new Form({
                     id:'',
-                   name: '',
-                   email: '',
-                   password: '',
+                   title: '',
+                   currency: '',
+                   amount: '',
+                   purpose: '',
+                   marchant: '',
+                  
                    type: '',
-                   bio: '',
+                 
                    photo: ''
                 })
             }
@@ -157,15 +187,15 @@
             window.print();
         },
           getResults(page = 1) {
-		                	axios.get('api/user?page=' + page)
+		                	axios.get('api/product?page=' + page)
 			                        	.then(response => {
-				                    	this.users = response.data;
+				                    	this.products = response.data;
 		          	     	});
 	                	},
             updateUser(){
               //  console.log('editing data');
                 this.$Progress.start();
-               this.form.put('api/user/'+this.form.id)
+               this.form.put('api/product/'+this.form.id)
                .then(()=>{
                  $('#addNewModal').modal('hide');
                     swal("yes! Your file has been updated!", {
@@ -181,10 +211,10 @@
                  this.$Progress.fail();
                });
             },
-            editModel(user){
+            editModel(product){
                this.editMode=true;
              $('#addNewModal').modal('show');
-              this.form.fill(user);
+              this.form.fill(product);
           },
           newModel(){
             this.editMode=false;
@@ -204,7 +234,7 @@
   dangerMode: true,
 })
 .then((willDelete) => {
-  this.form.delete('api/user/'+id).then(()=>{
+  this.form.delete('api/product/'+id).then(()=>{
     if (willDelete) {
     swal("Poof! Your imaginary file has been deleted!", {
       icon: "success",
@@ -223,19 +253,19 @@
 
           loadUsers(){
             if(this.$gate.isAdminorAuthor()){
-                    axios.get("api/user").then(({data})=>(this.users=data))
+                    axios.get("api/product").then(({data})=>(this.products=data))
             }
                
           },
             createUser()
             {
               this.$Progress.start();
-                this.form.post('api/user')
+                this.form.post('api/product')
                 .then(()=>{
  
                 Fire.$emit('AfterCreate');
                 $('#addNewModal').modal('hide')
-                swal("Good job!", "You created User Successfully", "success");
+                swal("Good job!", "You created product Successfully", "success");
                  this.$Progress.finish();
   
                 
@@ -250,9 +280,9 @@
           
             Fire.$on('searching',() => {
                 let query = this.$parent.search;
-                axios.get('api/findUser?q=' + query)
+                axios.get('api/findproduct?q=' + query)
                 .then((data) => {
-                    this.users = data.data
+                    this.products = data.data
                 })
                 .catch(() => {
                 })
@@ -261,7 +291,7 @@
            Fire.$on('AfterCreate',() => {
                this.loadUsers();
            });
-            // setInterval(()=>this.loadUsers(),3000);
+            // setInterval(()=>this.loadproducts(),3000);
 
 
         }

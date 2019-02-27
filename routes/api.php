@@ -27,6 +27,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->get('/product', function (Request $request) {
     return $request->product();
 });
+
+
+Route::get('total', 'API\ProductController@getTotal');
+
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResources(['user'=>'API\UserController']);
     Route::apiResources(['product'=>'API\ProductController']);

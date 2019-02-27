@@ -156,7 +156,70 @@
             </div>
             </div>
         </div>
+       <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Draggable Events</h4>
+              </div>
+              <div class="card-body">
+                <!-- the events -->
+                <div id="external-events">
+                  <div class="external-event bg-success ui-draggable ui-draggable-handle" style="position: relative;">Lunch</div>
+                  <div class="external-event bg-warning ui-draggable ui-draggable-handle" style="position: relative;">Go home</div>
+                  <div class="external-event bg-info ui-draggable ui-draggable-handle" style="position: relative;">Do homework</div>
+                  <div class="external-event bg-primary ui-draggable ui-draggable-handle" style="position: relative;">Work on UI design</div>
+                  <div class="external-event bg-danger ui-draggable ui-draggable-handle" style="position: relative;">Sleep tight</div>
+                  <div class="checkbox">
+                    <label for="drop-remove">
+                      <input type="checkbox" id="drop-remove">
+                      remove after drop
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /. box -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Create Event</h3>
+              </div>
+              <div class="card-body">
+                <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                  <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                  <ul class="fc-color-picker" id="color-chooser">
+                    <li><a class="text-primary" href="#"><i class="fa fa-square"></i></a></li>
+                    <li><a class="text-warning" href="#"><i class="fa fa-square"></i></a></li>
+                    <li><a class="text-success" href="#"><i class="fa fa-square"></i></a></li>
+                    <li><a class="text-danger" href="#"><i class="fa fa-square"></i></a></li>
+                    <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
+                  </ul>
+                </div>
+                <!-- /btn-group -->
+                <div class="input-group">
+                  <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+
+                  <div class="input-group-append">
+                    <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button>
+                  </div>
+                  <!-- /btn-group -->
+                </div>
+                <!-- /input-group -->
+              </div>
+            </div>
+          </div>
+          <!-- /.col -->
+         
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
     </div>
+    
 </template>
 
 <script>

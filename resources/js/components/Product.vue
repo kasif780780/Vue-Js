@@ -45,10 +45,12 @@
 
                     <td><span class="tag tag-success">Approved</span></td>
                     <td>
+                     <router-link :to="{ name: 'produtctShow', params: { id: item.id }}">   <i class="fas fa-eye"></i></router-link>
                       <a href="#" class="edit" @click="editModel(item)">
                 <i class="fas fa-edit"></i>
 
-                      </a>|
+             |</a>
+          
                        <a href="#" class="delete" @click="deleteUser(item.id)">
               <i class="fas fa-trash-alt"></i>
 
@@ -182,6 +184,7 @@
             }
         },
         methods:{
+         
            printme() {
              $('button').hide();
              $('.edit').hide();
@@ -244,7 +247,7 @@
     }
     
     );
-    Fire.$emit('AfterCreate');
+    // Fire.$emit('AfterCreate');
   }
   }).catch(()=>{
     swal("Failed!","There was something wrong. ", "warning");

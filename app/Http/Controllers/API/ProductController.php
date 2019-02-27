@@ -24,6 +24,7 @@ class ProductController extends Controller
         // $this->authorize('isAdmin');
         if(\Gate::allows('isAdmin')|| \Gate::Allows('isAuthor'))
         {
+          
             return Product::latest()->paginate(5);
         }
         
@@ -69,7 +70,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $Product =Product::findorFail($id);
+
+        return $Product;
     }
     public function updateProfile(Request $request)
     {
@@ -152,5 +155,10 @@ class ProductController extends Controller
             $Products = Product::latest()->paginate(5);
         }
         return $Products;
+    }
+
+    public function getTotal() {
+        $total = Product::sum('amount');
+        return $total;
     }
 }

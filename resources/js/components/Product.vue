@@ -42,6 +42,7 @@
                     <td>{{item.marchant}}</td>
                     <td>{{item.type | upText}}</td>
                      <td>{{item.created_at |dateFormat}}</td>
+                     
 
                     <td><span class="tag tag-success">Approved</span></td>
                     <td>
@@ -59,7 +60,11 @@
                   </tr>
                  
                 </tbody></table>
+   
+     
               </div>
+
+              
               <!-- /.card-body -->
               <div class="card-footer">
                
@@ -68,8 +73,16 @@
 	<span slot="next-nav">Next &gt;</span>
 </pagination>
               </div>
+
             </div>
             <!-- /.card -->
+            <div class="card mt-4 mb-5">
+  <div class="card-header">
+    <b>Total</b> :{{ total }} Rs.
+  </div>
+  
+</div>
+
           </div>
         </div>
         
@@ -167,6 +180,7 @@
         data()
         {
             return{
+               total: null,
               editMode:false,
                products :{},
                 form:new Form({
@@ -299,6 +313,16 @@
             // setInterval(()=>this.loadproducts(),3000);
 
 
+        },
+           mounted() {
+                axios.get(`/api/total`)
+                .then(({data}) => {
+                    // console.log(data)
+                    this.total = data;
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
         }
     }
 </script>

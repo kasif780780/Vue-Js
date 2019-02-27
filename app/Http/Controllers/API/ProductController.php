@@ -100,7 +100,7 @@ class ProductController extends Controller
     }
     public function profile()
     {
-        return auth('api')->product();
+        return auth('api')->user();
         //
     }
   

@@ -24,6 +24,8 @@ Auth::routes();
 // Route::resource('expanse','ExpanseController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{path}', "HomeController@index")->where( 'path', '([A-z]+)?' );
+Route::get('{path}/{id}', "HomeController@index")->where( 'path', '([A-z]+)?' );
+
 
 // Route::get('/complete-registration', 'Auth\RegisterController@completeRegistration');
 // Route::post('/2fa', function () {

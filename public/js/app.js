@@ -2119,9 +2119,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      total: null,
       editMode: false,
       products: {},
       form: new Form({
@@ -2236,6 +2250,17 @@ __webpack_require__.r(__webpack_exports__);
     Fire.$on('AfterCreate', function () {
       _this6.loadUsers();
     }); // setInterval(()=>this.loadproducts(),3000);
+  },
+  mounted: function mounted() {
+    var _this7 = this;
+
+    axios.get("/api/total").then(function (_ref2) {
+      var data = _ref2.data;
+      // console.log(data)
+      _this7.total = data;
+    }).catch(function (e) {
+      console.log(e);
+    });
   }
 });
 
@@ -60256,6 +60281,13 @@ var render = function() {
                 ],
                 1
               )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card mt-4 mb-5" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("b", [_vm._v("Total")]),
+                _vm._v(" :" + _vm._s(_vm.total) + " Rs.\n  ")
+              ])
             ])
           ])
         : _vm._e()

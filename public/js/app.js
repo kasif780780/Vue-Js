@@ -2287,6 +2287,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ProductShow',
   data: function data() {
@@ -2303,6 +2329,12 @@ __webpack_require__.r(__webpack_exports__);
     this.getItem();
   },
   methods: {
+    printme: function printme() {
+      $('button').hide();
+      $('.edit').hide();
+      $('.card-footer').hide();
+      window.print();
+    },
     getItem: function getItem() {
       var _this = this;
 
@@ -60729,7 +60761,26 @@ var render = function() {
       _vm.$gate.isAdminorAuthor()
         ? _c("div", { staticClass: "col-12" }, [
             _c("div", { staticClass: "card mt-5" }, [
-              _vm._m(0),
+              _c("div", { staticClass: "card-header bg-danger" }, [
+                _c("h3", { staticClass: "card-title" }, [_vm._v("Expanse")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: { href: "", target: "_blank" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.printme($event)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-print" }), _vm._v(" Print")]
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body table-responsive p-0" }, [
                 _c("table", { staticClass: "table table-hover" }, [
@@ -60741,9 +60792,49 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("tr", [
+                      _c("th", [_vm._v("Date")]),
+                      _vm._v(" "),
+                      _c("th", [
+                        _vm._v(
+                          _vm._s(_vm._f("dateFormat")(_vm.product.created_at))
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
                       _c("th", [_vm._v("Title")]),
                       _vm._v(" "),
                       _c("th", [_vm._v(_vm._s(_vm.product.title))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", [_vm._v("Currency")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v(_vm._s(_vm.product.currency))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", [_vm._v("Purpose")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v(_vm._s(_vm.product.purpose))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", [_vm._v("Marchant")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v(_vm._s(_vm.product.marchant))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", [_vm._v("Category")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v(_vm._s(_vm.product.type))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", [_vm._v("Amount")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v(_vm._s(_vm.product.amount) + " Rs.")])
                     ])
                   ])
                 ])
@@ -60754,18 +60845,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Products")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

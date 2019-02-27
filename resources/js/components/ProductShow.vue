@@ -3,15 +3,15 @@
         <div class="row">
           <div class="col-12" v-if="$gate.isAdminorAuthor()">
             <div class="card mt-5">
-              <div class="card-header">
-                <h3 class="card-title">Products</h3>
+              <div class="card-header bg-danger">
+                <h3 class="card-title">Expanse</h3>
 
                 <div class="card-tools">
                    <!-- <button class="btn btn-success" @click="newModel" >Add New
                    <span><i class="fas fa-product-plus"></i></span>
                    </button> -->
                  
-                    <!-- <a href="" @click.prevent="printme" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a> -->
+                    <a href="" @click.prevent="printme" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                 </div>
               </div>
                 <!-- /.card-header -->
@@ -21,11 +21,37 @@
                     <tr>
                         <th>ID</th>
                         <th>{{ product.id }}</th>
+                        
+                       
                     </tr>
-                    <tr>
-                        <th>Title</th>
-                        <th>{{ product.title }}</th>
+                     <tr>
+                        <th>Date</th>
+                        <th>{{product.created_at |dateFormat}}</th>
+                        
+                       
                     </tr>
+                    <tr> <th>Title</th>
+                        <th>{{ product.title }}</th></tr>
+                        <tr>
+                              <th>Currency</th>
+                        <th>{{ product.currency }}</th>
+                        </tr>
+                        <tr>
+                              <th>Purpose</th>
+                        <th>{{ product.purpose }}</th>
+                        </tr>
+                         <tr>
+                              <th>Marchant</th>
+                        <th>{{ product.marchant }}</th>
+                        </tr>
+                         <tr>
+                              <th>Category</th>
+                        <th>{{ product.type }}</th>
+                        </tr>
+                         <tr>
+                              <th>Amount</th>
+                        <th>{{ product.amount }} Rs.</th>
+                        </tr>
                   </tbody>
                 </table>
               </div>
@@ -55,6 +81,12 @@ export default {
     },
 
     methods: {
+          printme() {
+             $('button').hide();
+             $('.edit').hide();
+             $('.card-footer').hide();
+            window.print();
+        },
         getItem() {
             axios.get(`/api/product/${this.$route.params.id}`)
             .then((data) => {

@@ -25,7 +25,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{path}', "HomeController@index")->where( 'path', '([A-z]+)?' );
 Route::get('{path}/{id}', "HomeController@index")->where( 'path', '([A-z]+)?' );
+Route::resource('/events','EventController');
 
+Route::get('/addeventurl','EventController@display');
+Route::get('/displaydata','EventController@show');
+Route::get('/deleteeventurl','EventController@show');
 
 // Route::get('/complete-registration', 'Auth\RegisterController@completeRegistration');
 // Route::post('/2fa', function () {
